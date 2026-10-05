@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Dr Lu Huo, AI researcher and data scientist in Sydney. Senior AI Engineer at Westpac; PhD in Artificial Intelligence (UTS); research in transfer learning, knowledge distillation and multimodal fusion.">
+<meta name="author" content="Lu Huo">
+<meta name="theme-color" content="#03060f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dr Lu Huo">
+<meta property="og:description" content="Dr Lu Huo, AI researcher and data scientist in Sydney. Senior AI Engineer at Westpac; PhD in Artificial Intelligence (UTS); research in transfer learning, knowledge distillation and multimodal fusion.">
+<link rel="icon" id="favicon" href="data:,">
+<title>Dr Lu Huo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: one dark brand canvas (matches Lu Explains Tech). Split hero (intro | whoami terminal),
+   then full-width sections on a 1120px measure: research grid, timeline, publications, channel, contact. */
+:root{
+  color-scheme: dark;
+  --bg:#03060f; --bg-glow:#0f1b3d; --bg-violet:#22164f;
+  --card:#0e1838; --line:#24345f; --card-v:#150f33; --line-v:#2e2560;
+  --head:#f3f6ff; --ink:#e8eefc; --body:#a9b8d9; --muted:#7586ad;
+  --cyan:#22d3ee; --violet:#a78bfa; --violet-deep:#8b5cf6; --star-line:#4f7cff;
+  --on-accent:#050a1a;
+  --grid:rgba(90,140,240,0.07);
+  --nav-bg:rgba(3,6,15,0.78);
+  --cyan-glow:rgba(34,211,238,0.22);
+  --grad:linear-gradient(90deg,#22d3ee 0%,#8b5cf6 100%);
+  --grad-diag:linear-gradient(135deg,#22d3ee 0%,#8b5cf6 100%);
+  --f-display:"Space Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --measure:1120px;
+  --s-xs:0.8125rem; --s-sm:0.9375rem; --s-md:1.0625rem; --s-lg:1.375rem;
+  --s-xl:clamp(1.9rem,1.3rem + 2.2vw,2.75rem);
+  --s-hero:clamp(3rem,1.6rem + 6vw,5.75rem);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--body);font-family:var(--f-body);font-size:var(--s-md);line-height:1.65;-webkit-font-smoothing:antialiased}
+.page{overflow-x:clip}
+.backdrop{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 0%,var(--bg-glow) 0%,transparent 70%),
+    radial-gradient(ellipse 45% 40% at 100% 60%,var(--bg-violet) 0%,transparent 70%);
+  opacity:.9}
+.backdrop::after{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 96px),
+             repeating-linear-gradient(0deg,var(--grid) 0 1px,transparent 1px 96px);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,transparent 75%);mask-image:linear-gradient(to bottom,#000 0%,transparent 75%)}
+h1,h2,h3{font-family:var(--f-display);color:var(--head);text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--measure);margin-inline:auto;padding-inline:24px}
+.mono{font-family:var(--f-mono)}
+.eyebrow{font-family:var(--f-mono);font-size:var(--s-xs);font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.eyebrow.violet{color:var(--violet)}
+.hl{color:var(--cyan)}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--nav-bg);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
+.brand{font-family:var(--f-mono);font-weight:500;color:var(--head);text-decoration:none;font-size:var(--s-sm);letter-spacing:.04em;white-space:nowrap}
+.brand b{color:var(--cyan);font-weight:500}
+.nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;align-items:center}
+.nav-links a{font-family:var(--f-mono);font-size:var(--s-xs);color:var(--muted);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--head)}
+.nav-links .cta{color:var(--on-accent);background:var(--grad);padding:8px 14px;border-radius:999px;font-weight:500}
+.nav-links .cta:hover{color:var(--on-accent)}
+@media (max-width:820px){.nav-links li:not(.keep){display:none}}
+
+/* Buttons */
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:var(--s-sm);font-weight:500;letter-spacing:.04em;text-decoration:none;padding:13px 20px;border-radius:999px;border:1px solid var(--line);color:var(--head);background:transparent;cursor:pointer;transition:border-color .2s,box-shadow .2s,transform .2s}
+.btn:hover{border-color:var(--cyan);box-shadow:0 0 32px var(--cyan-glow)}
+.btn.primary{background:var(--grad);border-color:transparent;color:var(--on-accent)}
+.btn svg{width:16px;height:16px;flex:none}
+
+/* Hero */
+.hero{position:relative;padding-block:88px 96px}
+#stars{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.6;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 55%);mask-image:linear-gradient(to right,transparent 0%,#000 55%)}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
+.hero-copy{display:flex;flex-direction:column;gap:22px;min-width:0}
+.hero h1{font-size:var(--s-hero);line-height:1;letter-spacing:-.025em;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;padding-bottom:.06em}
+.hero .lede{font-family:var(--f-display);font-weight:500;font-size:var(--s-lg);line-height:1.4;color:var(--ink);max-width:34ch}
+.hero .sub{max-width:56ch}
+.term{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(34,211,238,.04);overflow:hidden}
+.term-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);font-family:var(--f-mono);font-size:var(--s-xs);color:var(--muted)}
+.term-bar .live{display:inline-flex;align-items:center;gap:8px;color:var(--cyan)}
+.term-bar .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.term-body{padding:20px 20px 22px;font-family:var(--f-mono);font-size:var(--s-xs);line-height:1.7;color:var(--ink);overflow-x:auto}
+.term-body .cmd{color:var(--head)}
+.term-body .prompt{color:var(--violet);margin-right:.6em}
+.term dl{margin:14px 0 16px;display:grid;gap:6px}
+.term dl div{display:grid;grid-template-columns:11ch minmax(0,1fr);gap:12px}
+.term dt{color:var(--muted)}
+.term dd{margin:0;color:var(--ink)}
+.term dd.cy{color:var(--cyan)}
+.cursor{display:inline-block;width:.6em;height:1.1em;vertical-align:-.2em;background:var(--cyan);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.cursor{animation:none}}
+
+/* Sections */
+.section{padding-block:96px;scroll-margin-top:64px}
+.sec-head{display:flex;flex-direction:column;gap:14px;margin-bottom:44px;max-width:62ch}
+.sec-head h2{font-size:var(--s-xl);line-height:1.1;letter-spacing:-.015em}
+.sec-head p.intro{margin-top:4px}
+
+/* Research */
+.themes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.theme{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;gap:12px;min-width:0;transition:border-color .25s,box-shadow .25s}
+.theme:hover{border-color:var(--cyan);box-shadow:0 0 40px -8px var(--cyan-glow)}
+.theme .tag{font-family:var(--f-mono);font-size:var(--s-xs);color:var(--cyan);letter-spacing:.1em;text-transform:uppercase}
+.theme h3{font-size:1.375rem;line-height:1.2}
+.theme p{font-size:var(--s-sm)}
+.now{margin-top:18px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;border:1px solid var(--line-v);background:var(--card-v);border-radius:18px;padding:22px 28px}
+.now p{color:var(--ink)}
+
+/* Experience */
+.timeline{list-style:none;margin:0;padding:0;display:grid}
+.tl-row{display:grid;grid-template-columns:176px minmax(0,1fr);gap:32px;padding-block:28px;border-top:1px solid var(--line)}
+.tl-row:last-child{border-bottom:1px solid var(--line)}
+.tl-when{font-family:var(--f-mono);font-size:var(--s-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:6px}
+.tl-row.current .tl-when{color:var(--cyan)}
+.tl-what{display:grid;gap:8px;min-width:0}
+.tl-what h3{font-size:1.375rem;line-height:1.25}
+.tl-org{font-family:var(--f-mono);font-size:var(--s-sm);color:var(--violet)}
+.tl-what p{max-width:64ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.sub-head{margin:64px 0 20px}
+.tl-kind{display:block;margin-top:4px;color:var(--muted)}
+.timeline.compact .tl-row{padding-block:18px;align-items:baseline}
+.timeline.compact .tl-when{padding-top:0}
+.timeline.compact h3{font-size:1.125rem}
+.chip{font-family:var(--f-mono);font-size:var(--s-xs);color:var(--body);border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:rgba(14,24,56,.5)}
+
+/* Publications */
+.pubs{list-style:none;margin:0;padding:0;display:grid}
+.pub{display:grid;grid-template-columns:96px minmax(0,1fr);gap:24px;padding-block:22px;border-top:1px solid var(--line)}
+.pub:last-child{border-bottom:1px solid var(--line)}
+.pub-year{font-family:var(--f-mono);font-size:var(--s-sm);color:var(--muted);padding-top:2px;font-variant-numeric:tabular-nums}
+.pub-title{font-family:var(--f-display);font-weight:500;font-size:1.1875rem;line-height:1.35;color:var(--head)}
+.pub-title a{text-decoration:none;background-image:linear-gradient(var(--cyan),var(--cyan));background-size:0 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .3s}
+.pub-title a:hover{background-size:100% 1px}
+.pub-authors{font-size:var(--s-sm);margin-top:4px}
+.pub-authors b{color:var(--ink);font-weight:600}
+.pub-venue{font-family:var(--f-mono);font-size:var(--s-xs);color:var(--cyan);margin-top:6px;letter-spacing:.04em}
+.pubs-empty{border:1px dashed var(--line);border-radius:18px;padding:32px;display:grid;gap:12px;justify-items:start;background:rgba(14,24,56,.35)}
+.pubs-empty p{color:var(--ink)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filter{max-width:100%;text-align:left;font-family:var(--f-mono);font-size:var(--s-xs);letter-spacing:.04em;color:var(--body);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;transition:border-color .2s,color .2s}
+.filter:hover{border-color:var(--cyan);color:var(--head)}
+.filter[aria-pressed="true"]{background:var(--grad);border-color:transparent;color:var(--on-accent)}
+.filter .n{opacity:.65;margin-left:6px;font-variant-numeric:tabular-nums}
+.pub-year.review{font-size:var(--s-xs);color:var(--violet);letter-spacing:.06em;text-transform:uppercase;padding-top:5px}
+.pub-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-top:10px}
+.pub-meta .pub-venue{margin-top:0;margin-right:4px}
+.pub-tag{font-family:var(--f-mono);font-size:.72rem;color:var(--violet);border:1px solid var(--line-v);border-radius:999px;padding:2px 9px;max-width:100%}
+.pub-link{font-family:var(--f-mono);font-size:var(--s-xs);color:var(--head);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px}
+.pub-link:hover{border-color:var(--cyan);color:var(--cyan)}
+.theme .papers{margin-top:auto;padding-top:10px;font-family:var(--f-mono);font-size:var(--s-xs);color:var(--muted)}
+.domains{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.domains .chips{margin-top:0}
+
+/* Channel */
+.channel{display:grid;grid-template-columns:auto minmax(0,1fr);gap:48px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(24px,4vw,48px)}
+.ring{width:176px;height:176px;border-radius:50%;padding:5px;background:var(--grad-diag);box-shadow:0 0 60px -10px rgba(139,92,246,.55)}
+.ring img{display:block;width:100%;height:100%;border-radius:50%;border:4px solid var(--bg);object-fit:cover}
+.channel-copy{display:grid;gap:14px;min-width:0}
+.channel-copy h2{font-size:var(--s-xl);line-height:1.1}
+.channel-copy p{max-width:58ch}
+.channel-copy .btns{margin-top:8px}
+
+/* Contact */
+.contact{display:grid;gap:22px;max-width:760px}
+.contact h2{font-size:clamp(2.4rem,1.6rem + 3.5vw,4rem);line-height:1.02;letter-spacing:-.02em}
+.contact h2 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.email-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:6px}
+.email{font-family:var(--f-mono);font-size:clamp(1rem,.9rem + .6vw,1.25rem);color:var(--head);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;user-select:all;overflow-wrap:anywhere;min-width:0}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.copy-status{font-family:var(--f-mono);font-size:var(--s-xs);color:var(--cyan);min-height:1.2em}
+
+footer{border-top:1px solid var(--line);padding-block:28px 40px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:var(--s-xs);color:var(--muted);letter-spacing:.06em}
+
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:720px){
+  .section{padding-block:64px}
+  .hero{padding-block:56px 64px}
+  .themes{grid-template-columns:minmax(0,1fr)}
+  .now{grid-template-columns:minmax(0,1fr);gap:8px}
+  .tl-row{grid-template-columns:minmax(0,1fr);gap:8px}
+  .tl-when{padding-top:0}
+  .pub{grid-template-columns:minmax(0,1fr);gap:4px}
+  .channel{grid-template-columns:minmax(0,1fr);gap:28px;justify-items:start}
+  .ring{width:128px;height:128px}
+}
+a.email{text-decoration:none}
+a.email:hover{border-color:var(--cyan)}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">lu_huo<b>_</b></a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#channel">Channel</a></li>
+      <li class="keep"><a class="cta" href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">&gt; AI · Research · Industry_</p>
+        <h1>Dr Lu Huo</h1>
+        <p class="lede">AI researcher and data scientist, taking ideas from paper to production.</p>
+        <p class="sub">Senior AI Engineer at Westpac in Sydney, building task-specific AI models, guardrails and multi-agent systems for fintech. Former Chief Data Scientist at JurisTechne, a legal-AI company. PhD from the University of Technology Sydney in multimodal learning and knowledge transfer.</p>
+        <div class="btns">
+          <a class="btn primary" href="#experience">See my work
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="term-bar"><span>~/lu-huo</span><span class="live">Sydney, AU</span></div>
+        <div class="term-body">
+          <p class="cmd"><span class="prompt">$</span>whoami --verbose</p>
+          <dl>
+            <div><dt>role</dt><dd>Senior AI Engineer, Westpac DDAI</dd></div>
+            <div><dt>previously</dt><dd>Chief Data Scientist, JurisTechne</dd></div>
+            <div><dt>phd</dt><dd>Artificial Intelligence, UTS (2021–2025)</dd></div>
+            <div><dt>research</dt><dd>transfer learning · domain adaptation · knowledge distillation · multimodal fusion · information retrieval</dd></div>
+            <div><dt>building</dt><dd>task-specific AI models for legal &amp; fintech · RAG · guardrails · LLM evaluation · multi-agent systems</dd></div>
+            <div><dt>exploring</dt><dd>self-evolving agents · continual learning · safety alignment</dd></div>
+          </dl>
+          <p class="cmd"><span class="prompt">$</span><span class="cursor" aria-hidden="true"></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">&gt; Experience_</p>
+        <h2>Where I've worked</h2>
+      </div>
+      <ol class="timeline">
+        <li class="tl-row current">
+          <p class="tl-when">Now · 2026–</p>
+          <div class="tl-what">
+            <h3>Senior AI Engineer</h3>
+            <p class="tl-org">Westpac · Data &amp; AI (DDAI) · Sydney</p>
+            <p>Task-specific AI for one of Australia's largest banks: fintech models, RAG and LLM guardrails, evaluation services for LLM applications, multi-agent workflows and regulatory-compliance intelligence.</p>
+          </div>
+        </li>
+        <li class="tl-row">
+          <p class="tl-when">Previously</p>
+          <div class="tl-what">
+            <h3>Chief Data Scientist</h3>
+            <p class="tl-org">JurisTechne · Legal AI</p>
+            <p>JurisTechne builds AI for litigation, evaluating cases and predicting outcomes with its own legal language model. I led data science from first experiment to production service: set the roadmap, built legal-domain classifiers including fine-tuned BERT models with dual classification heads, and shipped them as services on AWS (SageMaker, Lambda, CDK).</p>
+          </div>
+        </li>
+        <li class="tl-row">
+          <p class="tl-when">2023 – 2025</p>
+          <div class="tl-what">
+            <h3>Casual Academic</h3>
+            <p class="tl-org">University of Technology Sydney</p>
+            <p>Taught machine learning and data science, mentoring 160+ students on end-to-end AI and analytics projects, from real-world data pipelines and predictive models to applied AI systems, with complex ideas explained clearly for diverse audiences.</p>
+          </div>
+        </li>
+        <li class="tl-row">
+          <p class="tl-when">2023 – 2024</p>
+          <div class="tl-what">
+            <h3>Visiting Researcher</h3>
+            <p class="tl-org">Southern University of Science and Technology (SUSTech) · Shenzhen</p>
+            <p>Designed machine learning models for cross-domain data integration and generalisation, using out-of-distribution detection and domain adaptation to keep models reliable on complex data from heterogeneous environments.</p>
+          </div>
+        </li>
+        <li class="tl-row">
+          <p class="tl-when">2021 – 2025<span class="tl-kind">Education</span></p>
+          <div class="tl-what">
+            <h3>PhD in Artificial Intelligence</h3>
+            <p class="tl-org">University of Technology Sydney</p>
+            <p>Thesis: <i>Hyperspectral Image Analysis: Learning from Multiple Modalities</i>, supervised by Professor Min Xu.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="sub-head">
+        <p class="eyebrow violet">&gt; Volunteer &amp; service_</p>
+      </div>
+      <ol class="timeline">
+        <li class="tl-row current">
+          <p class="tl-when">2021 – now</p>
+          <div class="tl-what">
+            <h3>Reviewer</h3>
+            <p class="tl-org">Top-tier journals &amp; AI conferences</p>
+            <p>Peer review for leading journals and AI conferences.</p>
+          </div>
+        </li>
+        <li class="tl-row">
+          <p class="tl-when">2023</p>
+          <div class="tl-what">
+            <h3>Student Representative</h3>
+            <p class="tl-org">University of Technology Sydney</p>
+            <p>Represented students and brought their feedback to the university.</p>
+          </div>
+        </li>
+        <li class="tl-row">
+          <p class="tl-when">2022 – 2023</p>
+          <div class="tl-what">
+            <h3>Ambassador</h3>
+            <p class="tl-org">Women in Engineering &amp; IT · UTS</p>
+            <p>Encouraged women and girls to pursue study and careers in engineering and IT.</p>
+          </div>
+        </li>
+        <li class="tl-row">
+          <p class="tl-when">During PhD</p>
+          <div class="tl-what">
+            <h3>Judge</h3>
+            <p class="tl-org">UTS Capstone Showcase</p>
+            <p>Judged student capstone projects at the University of Technology Sydney's Capstone Showcase.</p>
+          </div>
+        </li>
+      </ol>
+      <div class="sub-head">
+        <p class="eyebrow violet">&gt; Awards &amp; honours_</p>
+      </div>
+      <ol class="timeline compact">
+        <li class="tl-row"><p class="tl-when">UTS</p><div class="tl-what"><h3>Faculty of Engineering and IT Scholarship</h3><p class="tl-org">University of Technology Sydney</p></div></li>
+        <li class="tl-row"><p class="tl-when">UTS</p><div class="tl-what"><h3>International Research Scholarship</h3><p class="tl-org">University of Technology Sydney</p></div></li>
+        <li class="tl-row"><p class="tl-when">UTS</p><div class="tl-what"><h3>HDR Women in Engineering &amp; IT (WiEIT) Award</h3><p class="tl-org">University of Technology Sydney</p></div></li>
+        <li class="tl-row"><p class="tl-when">National</p><div class="tl-what"><h3>National Scholarship</h3><p class="tl-org">China</p></div></li>
+        <li class="tl-row"><p class="tl-when">Provincial</p><div class="tl-what"><h3>Outstanding Student Leader of Shanxi Province</h3><p class="tl-org">Shanxi Province, China</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research" class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">&gt; Research_</p>
+        <h2>What I research</h2>
+        <p class="intro">My research is about learning from more than one source: fusing complementary modalities into one representation, and transferring knowledge from one scene or domain to another. My PhD at UTS developed these ideas for hyperspectral remote sensing. Today I apply the same rigour to LLM and agent systems in industry.</p>
+      </div>
+      <div class="themes">
+        <article class="theme">
+          <p class="tag">Transfer learning · Domain adaptation · Knowledge distillation</p>
+          <h3>Cross-scene knowledge transfer</h3>
+          <p>Carrying what a model learns on one hyperspectral scene over to another, despite different sensors and mismatched label sets: aligning spectra and gradients while keeping the target-specific patterns a source model would miss.</p>
+          <p class="papers">IEEE TGRS (in review) · Remote Sensing</p>
+        </article>
+        <article class="theme">
+          <p class="tag">Multimodal · Information fusion</p>
+          <h3>Multimodal information fusion</h3>
+          <p>Combining complementary data into one representation: hyperspectral imagery with LiDAR elevation, and DNA, RNA and protein profiles measured in the same cell.</p>
+          <p class="papers">Neurocomputing · Briefings in Bioinformatics</p>
+        </article>
+        <article class="theme">
+          <p class="tag">Information retrieval · Computer vision</p>
+          <h3>Image retrieval and feature encoding</h3>
+          <p>Fusing multi-level CNN features into compact codes, with dimensionality reduction that keeps retrieval accurate while the index stays small.</p>
+          <p class="papers">Multimedia Tools and Applications · Turkish J. EECS</p>
+        </article>
+        <article class="theme">
+          <p class="tag">Applied AI</p>
+          <h3>Task-specific AI with guardrails</h3>
+          <p>In industry: AI models built for specific tasks in legal and fintech, retrieval-augmented generation (RAG) grounded in domain documents, guardrails that keep LLM outputs safe and compliant, evaluation designed before the system, and multi-agent workflows that hold up outside the demo.</p>
+          <p class="papers">Westpac · JurisTechne</p>
+        </article>
+      </div>
+      <div class="domains">
+        <p class="eyebrow">&gt; Applied to_</p>
+        <div class="chips">
+          <span class="chip">Remote sensing: hyperspectral, LiDAR</span><span class="chip">Bioinformatics &amp; genomics</span><span class="chip">Image retrieval</span><span class="chip">Legal AI</span><span class="chip">Fintech &amp; banking</span>
+        </div>
+      </div>
+      <div class="now">
+        <p class="eyebrow violet">&gt; Now exploring_</p>
+        <p>Self-evolving agents, continual learning and safety alignment: how an agent can improve from its own experience without forgetting what already works, and stay aligned with human intent as it changes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">&gt; Publications_</p>
+        <h2>Selected publications</h2>
+      </div>
+      <div class="filters" id="pub-filters" role="group" aria-label="Filter publications by topic"></div>
+      <div id="pub-list"></div>
+    </div>
+  </section>
+
+  <!-- CHANNEL -->
+  <section id="channel" class="section">
+    <div class="wrap">
+      <div class="channel">
+        <div class="ring"><img src="data:image/webp;base64,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" alt="Lu Explains Tech logo: two cats peeking over a ledge" width="176" height="176"></div>
+        <div class="channel-copy">
+          <p class="eyebrow">&gt; Lu Explains Tech_</p>
+          <h2>Research papers, explained</h2>
+          <p>On my YouTube channel I take one idea from AI research, trace it back to the paper that started it, and walk through how it works, where it breaks and where it is heading. Clear for a general audience, without dumbing it down.</p>
+          <div class="btns">
+            <a class="btn primary" data-link="youtube" href="#" target="_blank" rel="noopener">Watch on YouTube
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 11l6-6m0 0H6m5 0v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="wrap"><div class="contact">
+      <p class="eyebrow">&gt; Contact_</p>
+      <h2>Let's <span>talk</span></h2>
+      <p>Open to research collaborations, speaking invitations and technical conversations.</p>
+      <div class="email-row">
+        <a class="email" id="email" href="mailto:lu_huo@outlook.com">lu_huo@outlook.com</a>
+        <button class="btn" id="copy-email" type="button">Copy email</button>
+      </div>
+      <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+      <div class="links" id="links"></div>
+    </div></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Lu Huo · Sydney, Australia</span>
+    <span>&gt; built evaluation-first_</span>
+  </div>
+</footer>
+</div>
+
+<script>
+/* ---- Edit these to update the site ---- */
+const LINKS = {
+  linkedin: "",   // e.g. https://www.linkedin.com/in/your-handle
+  scholar:  "",   // e.g. https://scholar.google.com/citations?user=XXXX
+  github:   "",   // e.g. https://github.com/your-handle
+  youtube:  "https://www.youtube.com/results?search_query=Lu+Explains+Tech"
+};
+/* Topics used to tag and filter publications. */
+const TOPICS = {
+  transfer: "Transfer learning / Domain adaptation",
+  distill:  "Knowledge distillation",
+  fusion:   "Multimodal fusion",
+  ir:       "Information retrieval",
+  cv:       "Computer vision",
+  remote:   "Remote sensing",
+  bio:      "Bioinformatics"
+};
+/* One entry per paper. Authors: wrap your own name in ** ** to bold it.
+   year: a number, or text such as "In review" (then give "sort" a number so it orders correctly). */
+const PUBLICATIONS = [
+  { year: "In review", sort: 2026,
+    title: "Enhancing Knowledge Transfer in Hyperspectral Image Classification via Cross-scene Knowledge Integration",
+    authors: "**L. Huo**, W. Huang, J. Zhang, M. Xu, H. Zhang",
+    venue: "IEEE Transactions on Geoscience and Remote Sensing",
+    links: [{ label: "arXiv", url: "https://arxiv.org/abs/2512.08989" }],
+    topics: ["transfer", "distill", "remote"] },
+  { year: 2026,
+    title: "Agreement–Disagreement Guided Knowledge Transfer for Cross-Scene Hyperspectral Imaging",
+    authors: "**L. Huo**, H. Zhang, M. Xu",
+    venue: "Remote Sensing, 18(15): 2601",
+    links: [{ label: "DOI", url: "https://doi.org/10.3390/rs18152601" }, { label: "arXiv", url: "https://arxiv.org/abs/2512.08990" }],
+    topics: ["transfer", "distill", "remote"] },
+  { year: 2025, kind: "thesis",
+    title: "Hyperspectral Image Analysis: Learning from Multiple Modalities",
+    authors: "**L. Huo**",
+    venue: "PhD thesis, University of Technology Sydney",
+    links: [{ label: "UTS", url: "https://opus.lib.uts.edu.au/handle/10453/194723" }],
+    topics: ["transfer", "distill", "fusion", "remote"] },
+  { year: 2024,
+    title: "Center-bridged Interaction Fusion for hyperspectral and LiDAR classification",
+    authors: "**L. Huo**, J. Xia, L. Zhang, H. Zhang, M. Xu",
+    venue: "Neurocomputing, 127757",
+    links: [{ label: "DOI", url: "https://doi.org/10.1016/j.neucom.2024.127757" }],
+    topics: ["fusion", "remote"] },
+  { year: 2021,
+    title: "Single-cell multi-omics sequencing: application trends, COVID-19, data analysis issues and prospects",
+    authors: "**L. Huo**, J. J. Li, L. Chen, Z. Yu, G. Hutvagner, J. Li",
+    venue: "Briefings in Bioinformatics, 22(6): bbab229",
+    links: [{ label: "DOI", url: "https://doi.org/10.1093/bib/bbab229" }],
+    topics: ["fusion", "bio"] },
+  { year: 2019,
+    title: "Combined feature compression encoding in image retrieval",
+    authors: "**L. Huo**, L. Zhang",
+    venue: "Turkish Journal of Electrical Engineering & Computer Sciences, 27(3): 1603–1618",
+    links: [{ label: "DOI", url: "https://doi.org/10.3906/elk-1803-3" }],
+    topics: ["ir", "cv"] },
+  { year: 2019,
+    title: "Fused feature encoding in convolutional neural network",
+    authors: "**L. Huo**, T. Rao, L. Zhang",
+    venue: "Multimedia Tools and Applications, 78(2): 1635–1648",
+    links: [{ label: "Google Scholar", url: "https://scholar.google.com/scholar?q=%22Fused+feature+encoding+in+convolutional+neural+network%22" }],
+    topics: ["ir", "cv"] }
+];
+/* --------------------------------------- */
+
+const LABELS = { linkedin: "LinkedIn", scholar: "Google Scholar", github: "GitHub", youtube: "YouTube" };
+
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+function renderLinks(){
+  document.querySelectorAll("[data-link]").forEach(a => {
+    const url = LINKS[a.dataset.link];
+    if (url) a.href = url; else a.hidden = true;
+  });
+  const box = document.getElementById("links");
+  box.innerHTML = Object.keys(LABELS).filter(k => LINKS[k]).map(k =>
+    `<a class="btn" href="${esc(LINKS[k])}" target="_blank" rel="noopener">${LABELS[k]}</a>`).join("");
+}
+
+let pubFilter = "all";
+
+function renderFilters(){
+  const box = document.getElementById("pub-filters");
+  if (!PUBLICATIONS.length){ box.hidden = true; return; }
+  const counts = { all: PUBLICATIONS.length };
+  PUBLICATIONS.forEach(p => (p.topics || []).forEach(t => counts[t] = (counts[t] || 0) + 1));
+  const keys = ["all", ...Object.keys(TOPICS).filter(k => counts[k])];
+  box.innerHTML = keys.map(k => `<button type="button" class="filter" data-topic="${k}" aria-pressed="${k === pubFilter}">${k === "all" ? "All" : esc(TOPICS[k])}<span class="n">${counts[k]}</span></button>`).join("");
+  box.querySelectorAll(".filter").forEach(b => b.addEventListener("click", () => { pubFilter = b.dataset.topic; renderFilters(); renderPubs(); }));
+}
+
+function renderPubs(){
+  const el = document.getElementById("pub-list");
+  if (!PUBLICATIONS.length){
+    el.innerHTML = `<div class="pubs-empty">
+      <p class="eyebrow">&gt; Updating_</p>
+      <p>The full publication list is being added here.${LINKS.scholar ? " Until then, my papers are on Google Scholar." : ""}</p>
+      ${LINKS.scholar ? `<a class="btn" href="${esc(LINKS.scholar)}" target="_blank" rel="noopener">Google Scholar</a>` : ""}
+    </div>`;
+    return;
+  }
+  const key = p => typeof p.sort === "number" ? p.sort : (typeof p.year === "number" ? p.year : 0);
+  const list = PUBLICATIONS.map((p, i) => ({ p, i }))
+    .filter(({ p }) => pubFilter === "all" || (p.topics || []).includes(pubFilter))
+    .sort((a, b) => key(b.p) - key(a.p) || a.i - b.i)
+    .map(({ p }) => p);
+  const items = list.map(p => {
+    const authors = esc(p.authors || "").replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+    const main = (p.links || [])[0];
+    const title = main ? `<a href="${esc(main.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>` : esc(p.title);
+    const review = typeof p.year !== "number";
+    const tags = (p.topics || []).map(t => `<span class="pub-tag">${esc(TOPICS[t] || t)}</span>`).join("");
+    const links = (p.links || []).map(l => `<a class="pub-link" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a>`).join("");
+    return `<li class="pub"><span class="pub-year${review ? " review" : ""}">${esc(p.year || "")}</span>
+      <div><p class="pub-title">${title}</p><p class="pub-authors">${authors}</p>
+      <div class="pub-meta">${p.venue ? `<span class="pub-venue">${esc(p.venue)}</span>` : ""}${tags}${links}</div></div></li>`;
+  }).join("");
+  el.innerHTML = `<ol class="pubs">${items}</ol>`;
+}
+
+function setupCopy(){
+  const btn = document.getElementById("copy-email"), status = document.getElementById("copy-status"), email = document.getElementById("email");
+  btn.addEventListener("click", () => {
+    const text = email.textContent.trim();
+    const selectIt = () => { const r = document.createRange(); r.selectNodeContents(email); const s = getSelection(); s.removeAllRanges(); s.addRange(r); status.textContent = "Selected. Press Ctrl/Cmd + C to copy."; };
+    try {
+      navigator.clipboard.writeText(text).then(() => { status.textContent = "Email copied."; }, selectIt);
+    } catch (e) { selectIt(); }
+  });
+}
+
+function drawStars(){
+  const c = document.getElementById("stars");
+  if (!c || !c.getContext) return;
+  const css = getComputedStyle(document.documentElement);
+  const cyan = css.getPropertyValue("--cyan").trim(), violet = css.getPropertyValue("--violet-deep").trim(), lineCol = css.getPropertyValue("--star-line").trim();
+  const dpr = Math.min(window.devicePixelRatio || 1, 2), w = c.clientWidth, h = c.clientHeight;
+  if (!w || !h) return;
+  c.width = w * dpr; c.height = h * dpr;
+  const ctx = c.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,w,h);
+  let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const n = Math.max(14, Math.min(42, Math.round(w * h / 16000)));
+  const pts = Array.from({length:n}, () => ({x: w*(0.35 + 0.63*rnd()), y: h*(0.06 + 0.88*rnd())}));
+  ctx.strokeStyle = lineCol; ctx.globalAlpha = 0.35; ctx.lineWidth = 1.2;
+  pts.forEach((p,i) => {
+    pts.map((q,j) => ({j, d: Math.hypot(p.x-q.x, p.y-q.y)})).filter(o => o.j !== i).sort((a,b) => a.d-b.d).slice(0,2)
+      .forEach(o => { if (o.d < Math.max(w,h)*0.22){ ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(pts[o.j].x, pts[o.j].y); ctx.stroke(); } });
+  });
+  ctx.globalAlpha = 0.85;
+  pts.forEach((p,i) => { ctx.fillStyle = i % 2 ? violet : cyan; ctx.beginPath(); ctx.arc(p.x, p.y, i % 3 === 0 ? 3.2 : 2.2, 0, Math.PI*2); ctx.fill(); });
+  ctx.globalAlpha = 1;
+}
+
+renderLinks();
+renderFilters();
+renderPubs();
+setupCopy();
+drawStars();
+let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(drawStars, 150); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawStars);
+
+/* Favicon from the channel logo */
+try { const ic=document.getElementById("favicon"), lg=document.querySelector(".ring img"); if (ic && lg) ic.href = lg.src; } catch (e) {}
+</script>
+</body>
+</html>
